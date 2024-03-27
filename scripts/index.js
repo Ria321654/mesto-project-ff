@@ -10,30 +10,31 @@
 const templateCard = document.querySelector("#card-template").content.querySelector('.card');
 const placesList  = document.querySelector(".places__list");
 
+/* Функция удаления карточки */
+const deleteCard = function(evt){
+        const cardElement =  evt.target.closest('.card');
+        cardElement.remove();
+};
 
 /* Функция создания карточки */
-const functionCard = function (name, url, deleteCard) {
+const createCard = function (name, url, deleteCard) {
     const card = templateCard.cloneNode(true);
     const titleCard = card.querySelector('.card__title');
     const cardImg = card.querySelector('.card__image');
     titleCard.textContent = name;
     cardImg.src = url;
-    deleteCard(card);
+    cardImg.alt = name;
+    const deleteButton = card.querySelector('.card__delete-button');
+    deleteButton.addEventListener('click', deleteCard);
     return card;
-};
+};  
 
-/* Функция удаления карточки */
-const deleteCard = function(card){
-    const addButton = card.querySelector('.card__delete-button');
-    addButton.addEventListener('click', ()=> {
-        card.remove();
-    });
-};
+
 
 /* Циклом перебираем карточки из массива initialCards */
 for (let i = 0; i < initialCards.length; i++){
     const nameCard = initialCards[i].name;
     const linkCard = initialCards[i].link;
-    const addCard = functionCard(nameCard, linkCard, deleteCard);
+    const addCard = createCard(nameCard, linkCard, deleteCard);
     placesList.appendChild(addCard);
 };
