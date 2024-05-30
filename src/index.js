@@ -105,23 +105,23 @@ const addCardToTop = function(cardElement) {
   placesList.insertBefore(cardElement, placesList.firstChild);
 };
 
-// Функция для сохранения карточки
-const saveCard = function(name, url) {
-  const newCard = createCard(name, url, deleteCard);
-  addCardToTop(newCard);
-  closeEditProfilePopup(); // Закрытие диалогового окна
-  nameInput.value = ''; // Очистка поля имени
-  jobInput.value = ''; // Очистка поля должности
-};
+// // Функция для сохранения карточки
+// const saveCard = function(name, url) {
+//   const newCard = createCard(name, url, deleteCard);
+//   addCardToTop(newCard);
+//   closeEditProfilePopup(); // Закрытие диалогового окна
+//   nameInput.value = ''; // Очистка поля имени
+//   jobInput.value = ''; // Очистка поля должности
+// };
 
-// Обработчик клика на кнопку "Сохранить"
-saveButton.addEventListener('click', function() {
-  const name = nameInput.value;
-  const url = jobInput.value;
-  saveCard(name, url);
-});
+// // Обработчик клика на кнопку "Сохранить"
+// saveButton.addEventListener('click', function() {
+//   const name = nameInput.value;
+//   const url = jobInput.value;
+//   saveCard(name, url);
+// });
 
-// Функция для закрытия диалогового окна
-const closeEditProfilePopup = function() {
-  editProfilePopup.classList.remove('popup_opened');
-};
+// // Функция для закрытия диалогового окна
+// const closeEditProfilePopup = function() {
+//   editProfilePopup.classList.remove('popup_opened');
+// };
