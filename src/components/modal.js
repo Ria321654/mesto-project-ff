@@ -1,11 +1,13 @@
 function openModal(popup) {
     popup.classList.add('popup_is-opened');
     document.addEventListener('keydown', closeModalEsk);
+    popup.addEventListener('mousedown', closeModalOverley)
   };
 
   function closeModal(popup) {
     popup.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', closeModalEsk);
+    popup.addEventListener('mousedown', closeModalOverley)
   };
 
   function closeModalEsk(evt) {

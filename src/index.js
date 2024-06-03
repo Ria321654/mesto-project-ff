@@ -46,7 +46,7 @@ for (let i = 0; i < initialCards.length; i++){
 };
 
 const editProfileButton = document.querySelector('.profile__edit-button');//кнопка открытия для первой формы
-const closeEditProfileButton = document.querySelector('.popup__close');// кнопка для зарытия первой формы 
+const closeEditProfileButton = document.querySelector('.popup__close_tye_edit');// кнопка для зарытия первой формы 
 const editProfilePopup = document.querySelector('.popup_type_edit');// див первой карточки с формой 
 const nameInput= document.querySelector('.popup__input_type_name');//имя первой формы
 const jobInput = document.querySelector('.popup__input_type_description');// должность первой формы 
@@ -54,15 +54,11 @@ const jobInput = document.querySelector('.popup__input_type_description');// д�
 const saveButton  = document.querySelector('.popup__button')//кнопка сохранить для форм
 const formElement = document.querySelector('.popup__form')// формы
 
-const profileAddBbutton = document.querySelector('.profile__add-button') //кнопка для открытия второй формы
-
-
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
-const popupTypeNewCard = document.querySelector('.popup_type_new-card')//див вторай  форма 
 
-
+// открытие первой карточки!!
 editProfileButton.addEventListener('click',function() {
   openModal(editProfilePopup);
 });
@@ -70,11 +66,7 @@ closeEditProfileButton.addEventListener('click', function() {
   closeModal(editProfilePopup);
 });
 
-closeEditProfileButton.addEventListener('keydown', closeModalEsk)
-closeEditProfileButton.addEventListener('mousedown', closeModalOverley)
-
-
-
+// сохранение данных для первой карточки!!
 editProfileButton.addEventListener('click', function() {
     // clearValidation(popapProfile, validationConfig);
     openModal(editProfilePopup);
@@ -90,38 +82,42 @@ function handleFormSubmit(evt) {
 // formElement.addEventListener('submit', handleFormSubmit);
 
 
+
 // вторая форма!!
+const closeEditProfileButtonCard = document.querySelector('.popup__close_new-card');// кнопка для зарытия второй формы 
+const profileAddBbutton = document.querySelector('.profile__add-button') //кнопка для открытия второй формы
+const popupTypeNewCard = document.querySelector('.popup_type_new-card')//див вторай  форма 
+
+
 profileAddBbutton.addEventListener('click',function() {
   openModal(popupTypeNewCard);
 });
-closeEditProfileButton.addEventListener('click', function() {
+
+closeEditProfileButtonCard.addEventListener('click', function() {
   closeModal(popupTypeNewCard);
 });
 
-closeEditProfileButton.addEventListener('keydown', closeModalEsk)
+
+// открытие озображения!!
+const popapCaption = document.querySelector('.popup__caption');//для подписи снизу 
+const popupTypeIimage = document.querySelector('.popup_type_image')// открытие большой карточки изображения 
+const popupImage = document.querySelector('.popup__image')
+const placesItem = document.querySelector('.places__item ') //для клика по изображению 
+const cardImage = document.querySelector('.card__image')
+function openImg(ImgSrc,ImgName) {
+  openModal(popupTypeIimage);
+  popupImage.src = ImgSrc;
+  popupImage.alt= ImgName;
+  popapCaption.textContent= ImgName;
+}
+
+cardImage.addEventListener('click', function() {
+  openImg(popupTypeIimage);
+})
 
 
-const addCardToTop = function(cardElement) {
-  placesList.insertBefore(cardElement, placesList.firstChild);
-};
-
-// // Функция для сохранения карточки
-// const saveCard = function(name, url) {
-//   const newCard = createCard(name, url, deleteCard);
-//   addCardToTop(newCard);
-//   closeEditProfilePopup(); // Закрытие диалогового окна
-//   nameInput.value = ''; // Очистка поля имени
-//   jobInput.value = ''; // Очистка поля должности
-// };
-
-// // Обработчик клика на кнопку "Сохранить"
-// saveButton.addEventListener('click', function() {
-//   const name = nameInput.value;
-//   const url = jobInput.value;
-//   saveCard(name, url);
-// });
-
-// // Функция для закрытия диалогового окна
-// const closeEditProfilePopup = function() {
-//   editProfilePopup.classList.remove('popup_opened');
-// };
+// 1)не работает кнопка сохранения, т.е. данные не сохраняються после редактирования 
+// 2) не добавляються новые карточки 
+// 3) лайки для карточек 
+// 4) не работает увеличение карточек 
+// 6) плавное открытие и закрытие 
