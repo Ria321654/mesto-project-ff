@@ -11,10 +11,10 @@
 
 import './pages/index.css'; // добавьте импорт главного файла стилей
 import {initialCards} from './scripts/cards.js';
-import {openModal, closeModal, closeModalEsk, closeModalOverley} from './components/modal.js';
+import {openModal, closeModal} from './components/modal.js';
 
 const templateCard = document.querySelector("#card-template").content.querySelector('.card');
-const placesList  = document.querySelector(".places__list");
+const cardsContainer  = document.querySelector(".places__list");
 
 /* Функция удаления карточки */
 const deleteCard = function(evt){
@@ -23,13 +23,14 @@ const deleteCard = function(evt){
 };
 
 /* Функция создания карточки */
-const createCard = function (name, url, deleteCard) {
+const createCard = function (name, url, deleteCard, id) {
     const card = templateCard.cloneNode(true);
     const titleCard = card.querySelector('.card__title');
     const cardImg = card.querySelector('.card__image');
     titleCard.textContent = name;
     cardImg.src = url;
     cardImg.alt = name;
+    card.id = id
     const deleteButton = card.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', deleteCard);
     return card;
@@ -41,8 +42,8 @@ const createCard = function (name, url, deleteCard) {
 for (let i = 0; i < initialCards.length; i++){
     const nameCard = initialCards[i].name;
     const linkCard = initialCards[i].link;
-    const addCard = createCard(nameCard, linkCard, deleteCard);
-    placesList.appendChild(addCard);
+    const addCard = createCard(nameCard, linkCard, deleteCard, i+1);
+    cardsContainer.appendChild(addCard);
 };
 
 const editProfileButton = document.querySelector('.profile__edit-button');//кнопка открытия для первой формы
@@ -66,20 +67,21 @@ closeEditProfileButton.addEventListener('click', function() {
   closeModal(editProfilePopup);
 });
 
-// сохранение данных для первой карточки!!
+// открывает форму с данными!!
 editProfileButton.addEventListener('click', function() {
     // clearValidation(popapProfile, validationConfig);
     openModal(editProfilePopup);
-    nameInput.value = profileTitle.textContent;
+    nameInput.value =  profileTitle.textContent;
     jobInput.value = profileDescription.textContent;
   });
-
+// функция сохранения формы 
 function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    nameInput.value = profileTitle.textContent;
-    jobInput.value = profileDescription.textContent;
+    profileTitle.textContent = nameInput.value;
+    profileDescription.textContent = jobInput.value;
+    closeModal(editProfilePopup);
 }
-// formElement.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleFormSubmit);
 
 
 
@@ -100,24 +102,40 @@ closeEditProfileButtonCard.addEventListener('click', function() {
 
 // открытие озображения!!
 const popapCaption = document.querySelector('.popup__caption');//для подписи снизу 
-const popupTypeIimage = document.querySelector('.popup_type_image')// открытие большой карточки изображения 
+const popupTypeImage = document.querySelector('.popup_type_image')// открытие большой карточки изображения 
 const popupImage = document.querySelector('.popup__image')
 const placesItem = document.querySelector('.places__item ') //для клика по изображению 
 const cardImage = document.querySelector('.card__image')
+
 function openImg(ImgSrc,ImgName) {
-  openModal(popupTypeIimage);
+  openModal(popupTypeImage);
   popupImage.src = ImgSrc;
   popupImage.alt= ImgName;
   popapCaption.textContent= ImgName;
 }
 
-cardImage.addEventListener('click', function() {
-  openImg(popupTypeIimage);
+cardsContainer.addEventListener('click', function(evt) {
+  if(evt.target.classList.contains('card__image')) {
+    const id = evt.target.closest('.card').id;
+  openImg(initialCards[id-1].link, initialCards[id-1].name);
+};
 })
 
 
-// 1)не работает кнопка сохранения, т.е. данные не сохраняються после редактирования 
+
+// для нажатия лайка!! работает только для первого сердечка
+const cardLikeButton = document.querySelector('.card__like-button');
+cardLikeButton.addEventListener('click', function (evt) { 
+  if (evt.target.classList.contains('card__like-button_is-active')) {
+    evt.target.classList.remove('card__like-button_is-active');
+  } else {
+    evt.target.classList.add('card__like-button_is-active');
+  }
+}
+);
+
+
+
 // 2) не добавляються новые карточки 
-// 3) лайки для карточек 
-// 4) не работает увеличение карточек 
+// 3) лайки для карточек работает только для первого сердечка
 // 6) плавное открытие и закрытие 
