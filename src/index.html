@@ -37,7 +37,7 @@
     <div class="popup__content">
       <button type="button" class="popup__close popup__close_tye_edit"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="editProfile" >
+      <form class="popup__form form_edit_profile" name="editProfile" >
         <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя" required>
         <input type="text" name="description" class="popup__input popup__input_type_description" placeholder="Занятие" required>
         <button type="submit" class="button popup__button">Сохранить</button>
@@ -48,7 +48,7 @@
     <div class="popup__content">
       <button type="button" class="popup__close popup__close_new-card"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="new-place">
+      <form class="popup__form form_add_card" name="new-place">
         <input type="text" name="place-name" class="popup__input popup__input_type_card-name" placeholder="Название" required>
         <input type="url" name="link" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку" required>
         <button type="submit" class="button popup__button">Сохранить</button>
@@ -57,7 +57,7 @@
   </div>
   <div class="popup popup_type_image">
     <div class="popup__content popup__content_content_image">
-      <button type="button" class="popup__close"></button>
+      <button type="button" class="popup__close popup__close_big-image"></button>
       <img src="" alt="" class="popup__image">
       <p class="popup__caption"></p>
     </div>
@@ -72,7 +72,7 @@
     <div class="card__description">
       <h2 class="card__title">
       </h2>
-      <button type="button" class="card__like-button "></button>
+      <button type="button" class="card__like-button"></button>
     </div>
   </li>
 </template>
