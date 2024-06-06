@@ -140,4 +140,4 @@ cardsContainer.addEventListener('click', function(evt) {
 popupImageCloseButton.addEventListener('click', function() {
   closeModal(popupTypeImage);
 });
-
+////
