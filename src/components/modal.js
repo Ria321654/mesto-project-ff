@@ -1,5 +1,8 @@
-function openModal(popup) {
-    popup.classList.add('popup_is-opened', 'popup_is-animated');
+function openModal(popup) {    
+  popup.classList.add("popup_is-animated");  // сначала анимация
+  setTimeout(() => {
+    popup.classList.add("popup_is-opened");  // потом только открытие
+  }, 1);
     document.addEventListener('keydown', closeModalEsc);
     popup.addEventListener('click', closeModalOverley)
   };
@@ -8,6 +11,7 @@ function openModal(popup) {
     popup.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', closeModalEsc);
     popup.addEventListener('click', closeModalOverley)
+    popup.removeEventListener('click', closeModalOverley)
   };
 
   function closeModalEsc(evt) {
@@ -16,9 +20,9 @@ function openModal(popup) {
     }
   };
 function closeModalOverley(evt){
-    if (evt.target === evt.currentTarget) {
-    closeModal(document.querySelector(".popup_is-opened"));
-    };
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+   };
   };
 
   export { openModal, closeModal}
