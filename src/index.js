@@ -90,7 +90,10 @@ function handleCardFormSubmit(evt) {
   inputCardName.value = '';
   inputCardUrl.value = '';
 }
-
+// popupTypeNewCard.addEventListener('click', () => {
+//   inputCardName.value = '';
+//   inputCardUrl.value = '';
+// });
 formProfileChange.addEventListener('submit', handleProfileFormSubmit);
 formAddCard.addEventListener('submit', handleCardFormSubmit);
 
