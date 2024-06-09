@@ -90,34 +90,15 @@ function handleCardFormSubmit(evt) {
   inputCardName.value = '';
   inputCardUrl.value = '';
 }
-// popupTypeNewCard.addEventListener('click', () => {
-//   inputCardName.value = '';
-//   inputCardUrl.value = '';
-// });
+
 formProfileChange.addEventListener('submit', handleProfileFormSubmit);
 formAddCard.addEventListener('submit', handleCardFormSubmit);
 
 
 // открытие озображения!!
-const popapCaption = document.querySelector('.popup__caption');//для подписи снизу 
 const popupTypeImage = document.querySelector('.popup_type_image')// открытие большой карточки изображения 
-const popupImage = document.querySelector('.popup__image')
 const popupImageCloseButton = document.querySelector('.popup__close_big-image')
 
-// Фция по открытию изображения
-function openImg(imgSrc,imgName) {
-  openModal(popupTypeImage);
-  popupImage.src = imgSrc;
-  popupImage.alt= imgName;
-  popapCaption.textContent= imgName;
-}
-// слушатель по клику на картинку карточки
-// cardsContainer.addEventListener('click', function(evt) {
-//   if(evt.target.classList.contains('card__image')) {
-//     const img = evt.target.closest('img');
-//     openImg(img.src, img.alt);
-//   };
-// })
 
 // слушатель по клику на кнопку закрытия большого изображения
 popupImageCloseButton.addEventListener('click', function() {

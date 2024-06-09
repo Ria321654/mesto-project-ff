@@ -1,3 +1,5 @@
+
+import { openModal } from "./modal";
 const templateCard = document.querySelector("#card-template").content.querySelector('.card');
 const cardsContainer  = document.querySelector(".places__list");
 /* Функция удаления карточки */
@@ -5,6 +7,18 @@ const deleteCard = function(evt){
     const cardElement =  evt.target.closest('.card');
     cardElement.remove();
 };
+
+// открытие озображения!!
+const popapCaption = document.querySelector('.popup__caption');//для подписи снизу 
+const popupTypeImage = document.querySelector('.popup_type_image')// открытие большой карточки изображения 
+const popupImage = document.querySelector('.popup__image')
+// Фция по открытию изображения
+function openImg(imgSrc,imgName) {
+  openModal(popupTypeImage);
+  popupImage.src = imgSrc;
+  popupImage.alt= imgName;
+  popapCaption.textContent= imgName;
+}
 
 /* Функция создания карточки */
 const createCard = function (name, url, deleteCard, changeLikeColor) {
